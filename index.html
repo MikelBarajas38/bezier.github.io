@@ -1,45 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Bezier</title>
-	<link rel="stylesheet" type="text/css" href="estilos.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BezierVista</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-	<header>
-		<h2>Bezier Curves</h2>
-	</header>
-	<div class="container">
-		<canvas id="canvas"></canvas>
-	</div>
-	<div class="point">
-        <label for="p0X">Point 0 X:</label>
-        <input type="text" id="p0X">
-        <label for="p0Y">Point 0 Y:</label>
-        <input type="text" id="p0Y">
+    <header>
+        <h2>BezierVista</h2>
+    </header>
+    <div class="container">
+        <div class="containerPoint">
+            <div class="div">
+                Enter the points:
+            </div>
+            <div class="point">
+                <div class="coordinates">
+                    <label for="p0X">Point 0 x</label>
+                    <input type="text" id="p0X">
+                </div>
+                <div class="coordinates">
+                    <label for="p0Y">Point 0 y</label>
+                    <input type="text" id="p0Y">
+                </div>
+            </div>
+            <div class="point">
+                <div class="coordinates">
+                    <label for="p1X">Point 1 x</label>
+                    <input type="text" id="p1X">
+                </div>
+                <div class="coordinates">
+                    <label for="p1X">Point 1 y</label>
+                    <input type="text" id="p1Y">
+                </div>
+            </div>
+            <div class="point">
+                <div class="coordinates">
+                    <label for="p2X">Point 2 x</label>
+                    <input type="text" id="p2X">
+                </div>
+                <div class="coordinates">
+                    <label for="p2Y">Point 2 y</label>
+                    <input type="text" id="p2Y">
+                </div>
+            </div>
+            <div class="point">
+                <div class="coordinates">
+                    <label for="p3X">Point 3 x</label>
+                    <input type="text" id="p3X">
+                </div>
+                <div class="coordinates">
+                    <label for="p3Y">Point 3 y</label>
+                    <input type="text" id="p3Y">
+                </div>
+            </div>
+            <div class="point">
+                <button id="clearButton">Clear</button>
+            </div>
+            <script>
+                function clearFields() {
+                    document.getElementById("p0X").value = "";
+                    document.getElementById("p0Y").value = "";
+                    document.getElementById("p1X").value = "";
+                    document.getElementById("p1Y").value = "";
+                    document.getElementById("p2X").value = "";
+                    document.getElementById("p2Y").value = "";
+                    document.getElementById("p3X").value = "";
+                    document.getElementById("p3Y").value = "";
+                }
+                document.getElementById("clearButton").addEventListener("click", clearFields);
+            </script>
+        </div>
+        <canvas id="canvas">HELLOOOOOOOO</canvas>
     </div>
-    <div class="point">
-        <label for="p1X">Point 1 X:</label>
-        <input type="text" id="p1X">
-        <label for="p1Y">Point 1 Y:</label>
-        <input type="text" id="p1Y">
-    </div>
-    <div class="point">
-        <label for="p2X">Point 2 X:</label>
-        <input type="text" id="p2X">
-        <label for="p2Y">Point 2 Y:</label>
-        <input type="text" id="p2Y">
-    </div>
-    <div class="point">
-        <label for="p3X">Point 3 X:</label>
-        <input type="text" id="p3X">
-        <label for="p3Y">Point 3 Y:</label>
-        <input type="text" id="p3Y">
-    </div>
-	<footer>
-		<h3>Barajas Martinez Mikel</h2>
-		<h3>Cortez Muñoz Manuel</h2>
-	</footer>
+    <footer>
+        <div class="div">
+            <h3>Barajas Martinez Mikel</h3>
+            <h3>Cortez Muñoz Manuel</h3>
+        </div>
+    </footer>
 </body>
 </html>

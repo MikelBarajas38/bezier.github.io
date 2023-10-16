@@ -9,11 +9,12 @@ canvas.style.border = '1px solid black';
 let points = [];
 let bezierIndex = [];
 let grabbedPoint = null;
+let showAll = true;
 
-points.push({x: 200, y: 400, w: 20, c: 'red', name: 'P0'});
-points.push({x: 400, y: 200, w: 20, c: 'blue', name: 'P1'});
-points.push({x: 600, y: 600, w: 20, c: 'blue',  name: 'P2'});
-points.push({x: 800, y: 400, w: 20, c: 'red', name: 'P3'});
+points.push({x: 200, y: 400, w: 20, c: 'red', name: 'P0', type: 'anchor'});
+points.push({x: 400, y: 200, w: 20, c: 'blue', name: 'P1', type: 'support'});
+points.push({x: 600, y: 600, w: 20, c: 'blue',  name: 'P2', type: 'support'});
+points.push({x: 800, y: 400, w: 20, c: 'red', name: 'P3', type: 'anchor'});
 
 bezierIndex.push(0);
 
@@ -61,11 +62,11 @@ function rightClick(e) {
     if(interPos2.y < 0) interPos2.y = 20;
     if(interPos2.y > canvas.height) interPos2.y = canvas.height - 20;
 
-    points.push({x: interPos1.x, y: interPos1.y, w: 20, c: 'blue', name: `P${i+1}`});
-    points.push({x: interPos2.x, y: interPos2.y, w: 20, c: 'blue',  name: `P${i+1}`});
-    points.push({x: pos.x, y: pos.y, w: 20, c: 'red', name: `P${i+3}`});
+    points.push({x: interPos1.x, y: interPos1.y, w: 20, c: 'blue', name: `P${i+1}`, type: 'support'});
+    points.push({x: interPos2.x, y: interPos2.y, w: 20, c: 'blue',  name: `P${i+1}`, type: 'support'});
+    points.push({x: pos.x, y: pos.y, w: 20, c: 'red', name: `P${i+3}`, type: 'anchor'});
 
-    drawPoints();
+    draw();
 }
 
 function mouseUp(e) {
@@ -85,7 +86,7 @@ function mouseMove(e) {
     grabbedPoint.x = pos.x;
     grabbedPoint.y = pos.y;
 
-    drawPoints();
+    draw();
 
 }
 
@@ -125,6 +126,8 @@ function drawBezierCurve(controlPoints) {
 
 function drawConnectingLines() {
 
+    if(!showAll) return;
+
     ctx.lineWidth = 2;
     ctx.strokeStyle = 'gray';
 
@@ -139,11 +142,8 @@ function drawConnectingLines() {
 }
 
 function drawPoints() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    showPointInfo();
-    drawConnectingLines();
-    drawBezierCurve();
     for(let point of points) {
+        if(!showAll && point.type === 'support') continue;
         ctx.beginPath();
         ctx.fillStyle = point.c;
         ctx.arc(point.x, point.y, point.w, 0, 2 * Math.PI);
@@ -151,11 +151,13 @@ function drawPoints() {
     }
 }
 
-drawPoints();
-canvas.onmousedown = mouseDown;
-canvas.onmouseup = mouseUp;
-canvas.onmousemove = mouseMove;
-canvas.oncontextmenu = rightClick;
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    showPointInfo();
+    drawConnectingLines();
+    drawBezierCurve();
+    drawPoints();
+}
 
 // elements
 
@@ -174,4 +176,14 @@ function showPointInfo() {
 
 }
 
-showPointInfo();
+
+draw();
+canvas.onmousedown = mouseDown;
+canvas.onmouseup = mouseUp;
+canvas.onmousemove = mouseMove;
+canvas.oncontextmenu = rightClick;
+
+document.getElementById('clearButton').addEventListener('click', () => {
+    showAll = !showAll;
+    draw();
+}, false);

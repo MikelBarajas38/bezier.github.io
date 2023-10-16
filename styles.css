@@ -26,18 +26,22 @@ h2 {
 div {
     margin-bottom: 5px;
 }
+
 #canvas {
+    height: 100%;
+    width: 100%;
     background-color: #efefef;
 }
 
 .container {
-    width: 95%;
-    height: 500px;
+    width: 100%;
+    height: 100%;
     margin-top: 5px;
     display: flex;
     justify-content: space-between;
     align-items: right;
 }
+
 .point {
     width: 30;
     justify-content: center;
@@ -61,6 +65,7 @@ div {
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, .2);
+    z-index: 1;
 }
 
 .coordinates {

@@ -17,10 +17,12 @@ footer {
 
 body {
     background-color: #efefef;
+    font-family: 'Open Sans', sans-serif;
 }
 
 h2 {
     color: #515151;
+    font-family: 'Open Sans', sans-serif;
 }
 
 div {
@@ -31,6 +33,7 @@ div {
     height: 100%;
     width: 100%;
     background-color: #efefef;
+    border: none;
 }
 
 .container {
